@@ -37,22 +37,35 @@ theme_set(theme_minimal() + theme(legend.position = "bottom"))
       mutate(leave_status = leave_status_as_of_june_30,
              pay_basis = recode(pay_basis, "per Annum" = "Annually"),
              pay_basis = recode(pay_basis, "per Day" = "Daily"),
-             pay_basis = recode(pay_basis, "per Hour" = "Hourly"), 
-             county_name = work_location_borough) %>% select(-payroll_number, -first_name, -last_name, -mid_init, -month, -day, -title_description, -leave_status_as_of_june_30, -regular_hours, -ot_hours, -regular_gross_paid, -work_location_borough) %>% 
+             pay_basis = recode(pay_basis, "per Hour" = "Hourly"),
+             county_name = work_location_borough,
+             county_name = recode(county_name, "MANHATTAN" = "NEW YORK"),
+             county_name = recode(county_name, "BROOKLYN" = "KINGS")) %>% select(-payroll_number, -first_name, -last_name, -mid_init, -month, -day, -title_description, -leave_status_as_of_june_30, -regular_hours, -ot_hours, -regular_gross_paid, -work_location_borough) %>% 
     mutate(county_name = as.factor(county_name),
            pay_basis = as.factor(pay_basis),
            leave_status = as.factor(leave_status))
 
-      
 head(payroll_data)
 #Need to create a new variable for borough and possibly look into removing decimal places for salary, and check NAs in first and last name
 #pay basis and leave status should be factor 
 ```
 
+```{r}
 
+mean_total_df =
+  payroll_data %>%
+  group_by(county_name) %>%
+  summarize(
+      mean_total_pay = mean(total_pay, na.rm = TRUE)) %>%
+        ggplot(aes(x = county_name, y = mean_total_pay, fill = county_name)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  labs(
+    x = "County Names",
+    y = "Mean Total Pay",
+    title = "The Mean Total Pay By County"
+  )
 
-
-
+```
 
 
 ```{r}
