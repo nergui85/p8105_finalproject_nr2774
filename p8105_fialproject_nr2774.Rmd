@@ -127,15 +127,14 @@ ggplot(Ls_boro2, aes(x = work_location_borough, y = count, fill = work_location_
 # number of total ot hours 
 #number of other pay
 List of things to do:
-1. Clean the data (Keep counties and government city, remove Washington) (Group)
+1. Clean the data (Keep counties and government city, remove Washington) (Justin- ask Tanvir about agency names as factor, Varvara - work location changing names)
 2. Visualizations
 -Bar Graph for mean base salary by municipality (Justin)
 -Bar Graph for number of employees by municipality separated by leave status (Varvara)
 -Boxplot for overtime pay by municipality (Nergui)
--Boxplot for overtime hours by municipality (Nergui)
 -Boxplot for total other pay by municipality (Justin)
 -Pie Chart for the percentages and numbers of the different leave statuses (Varvara)
--Median base salary by pay basis by county
+-Boxplot for Median base salary by pay basis by county (Nergui)
 (Incorprate plotly into each)
 3. Do ANOVA and Paired t-test analyses for the mean base salary by municipality (Varvara and Justin)
 4. Do the Website (Nergui)
